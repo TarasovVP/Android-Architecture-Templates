@@ -1,0 +1,58 @@
+package com.vnteam.architecturetemplates.presentation.list
+
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.vnteam.architecturetemplates.domain.mappers.DemoObjectUIMapper
+import com.vnteam.architecturetemplates.domain.models.DemoObject
+import com.vnteam.architecturetemplates.domain.usecase.DemoObjectUseCase
+import com.vnteam.architecturetemplates.presentation.uimodels.DemoObjectUI
+import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.CoroutineExceptionHandler
+import kotlinx.coroutines.launch
+import javax.inject.Inject
+
+@HiltViewModel
+class ListViewModel @Inject constructor(
+    private val demoObjectUseCase: DemoObjectUseCase,
+    private val demoObjectUIMapper: DemoObjectUIMapper,
+) : ViewModel() {
+
+    val progressVisibilityLiveData = MutableLiveData<Boolean>()
+    val errorLiveData = MutableLiveData<String>()
+    val demoObjectsFromDBLiveData = MutableLiveData<List<DemoObjectUI>>()
+
+    fun getDemoObjectsFromApi() {
+        progressVisibilityLiveData.postValue(true)
+        viewModelScope.launch(CoroutineExceptionHandler { _, exception ->
+            progressVisibilityLiveData.postValue(false)
+            errorLiveData.postValue(exception.localizedMessage)
+        }) {
+            val demoObjects = demoObjectUseCase.getDemoObjectsFromApi()
+            demoObjects?.let {
+                insertDemoObjectsToDB(it)
+            }
+            getDemoObjectsFromDB()
+        }
+    }
+
+    fun insertDemoObjectsToDB(demoObjects: List<DemoObject>) {
+        viewModelScope.launch(CoroutineExceptionHandler { _, exception ->
+            progressVisibilityLiveData.postValue(false)
+            errorLiveData.postValue(exception.localizedMessage)
+        }) {
+            demoObjectUseCase.insertDemoObjectsToDB(demoObjects)
+        }
+    }
+
+    fun getDemoObjectsFromDB() {
+        viewModelScope.launch(CoroutineExceptionHandler { _, exception ->
+            progressVisibilityLiveData.postValue(false)
+            errorLiveData.postValue(exception.localizedMessage)
+        }) {
+            val demoObjectUIS = demoObjectUIMapper.mapToImplModelList(demoObjectUseCase.getDemoObjectsFromDB())
+            demoObjectsFromDBLiveData.postValue(demoObjectUIS)
+            progressVisibilityLiveData.postValue(false)
+        }
+    }
+}
