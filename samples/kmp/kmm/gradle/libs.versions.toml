@@ -1,0 +1,59 @@
+[versions]
+compileSdk = "34"
+minSdk = "24"
+targetSdk = "34"
+
+kotlinCompilerExtensionVersion = "1.5.11"
+
+kotlinxSerialization = "1.6.3"
+coroutines = "1.8.0"
+viewmodelCompose = "2.8.0-beta01"
+ktor = "2.3.9"
+koin = "3.5.6"
+koinComposeMultiplatform = "1.1.5"
+sqldelight = "1.5.5"
+coilCompose = "3.0.0-alpha06"
+navigationCompose = "2.8.0-alpha02"
+activity = "1.9.0"
+materialRipple = "1.7.0-alpha05"
+agp = "8.2.2"
+compose-multiplatform = "1.6.10-beta01"
+kotlin = "1.9.23"
+sql-delight = "1.5.5"
+
+[libraries]
+kotlinx-serialization = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-core", version.ref = "kotlinxSerialization" }
+kotlinx-coroutines = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core", version.ref = "coroutines" }
+androidx-viewmodel-compose = { module = "org.jetbrains.androidx.lifecycle:lifecycle-viewmodel-compose", version.ref = "viewmodelCompose" }
+
+ktor-client-core = { group = "io.ktor", name = "ktor-client-core", version.ref = "ktor" }
+ktor-serialization-kotlinx-json = { group = "io.ktor", name = "ktor-serialization-kotlinx-json", version.ref = "ktor" }
+ktor-client-content-negotiation = { group = "io.ktor", name = "ktor-client-content-negotiation", version.ref = "ktor" }
+ktor-client-android = { group = "io.ktor", name = "ktor-client-android", version.ref = "ktor" }
+ktor-client-darwin = { group = "io.ktor", name = "ktor-client-darwin", version.ref = "ktor" }
+
+koin-core = { module = "io.insert-koin:koin-core", version.ref = "koin" }
+koin-compose = { module = "io.insert-koin:koin-compose", version.ref = "koinComposeMultiplatform" }
+koin-android = { module = "io.insert-koin:koin-android", version.ref = "koin" }
+koin-androidx-compose = { module = "io.insert-koin:koin-androidx-compose", version.ref = "koin" }
+
+sqldelight-runtime = { module = "com.squareup.sqldelight:runtime", version.ref = "sqldelight" }
+sqldelight-coroutines-extensions = { module = "com.squareup.sqldelight:coroutines-extensions", version.ref = "sqldelight" }
+sqldelight-android-driver = { module = "com.squareup.sqldelight:android-driver", version.ref = "sqldelight" }
+sqldelight-native-driver = { module = "com.squareup.sqldelight:native-driver", version.ref = "sqldelight" }
+
+coil-compose = { module = "io.coil-kt.coil3:coil-compose", version.ref = "coilCompose" }
+coil-network-ktor = { module = "io.coil-kt.coil3:coil-network-ktor", version.ref = "coilCompose" }
+
+navigation-compose = { group = "org.jetbrains.androidx.navigation", name = "navigation-compose", version.ref = "navigationCompose" }
+
+androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "activity" }
+material-ripple = { group = "androidx.compose.material", name = "material-ripple", version.ref = "materialRipple" }
+
+[plugins]
+androidApplication = { id = "com.android.application", version.ref = "agp" }
+androidLibrary = { id = "com.android.library", version.ref = "agp" }
+composeMultiplatform = { id = "org.jetbrains.compose", version.ref = "compose-multiplatform" }
+kotlinMultiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
+kotlinSerialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
+sqlDelight = { id = "com.squareup.sqldelight", version.ref = "sql-delight" }

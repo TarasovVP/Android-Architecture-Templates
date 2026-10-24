@@ -1,0 +1,53 @@
+name: Build
+on:
+  push:
+    branches:
+      - main
+      - kmp_with_analyze_tools
+  pull_request:
+    types: [opened, synchronize, reopened]
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - name: Set up JDK 17
+        uses: actions/setup-java@v1
+        with:
+          java-version: 17
+      - name: Cache SonarQube packages
+        uses: actions/cache@v3
+        with:
+          path: ~/.sonar/cache
+          key: ${{ runner.os }}-sonar
+          restore-keys: ${{ runner.os }}-sonar
+      - name: Cache Gradle packages
+        uses: actions/cache@v3
+        with:
+          path: ~/.gradle/caches
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle') }}
+          restore-keys: ${{ runner.os }}-gradle
+      - name: Create global local.properties
+        run: |
+          echo "CLOUD_URL=" >> local.properties
+          echo "JDBC_URL=" >> local.properties
+          echo "DRIVER_CLASS_NAME=" >> local.properties
+          echo "DB_USER_NAME=" >> local.properties
+          echo "DB_USER_PASSWORD=" >> local.properties
+      - name: Run Detekt (continue on error)
+        run: ./gradlew detekt --continue || echo "Detekt found issues, but continuing..."
+      - name: Generate Kover reports
+        run: ./gradlew koverXmlReport
+      - name: Build and analyze
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        run: |
+          ./gradlew sonar \
+            -Dsonar.projectKey=${{ secrets.SONAR_PROJECT_KEY }} \
+            -Dsonar.organization=${{ secrets.SONAR_ORG }} \
+            -Dsonar.host.url=${{ secrets.SONAR_HOST_URL }} \
+            --info \
+            -x assembleDebug -x packageDebug -x validateSigningDebug

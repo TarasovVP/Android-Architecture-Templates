@@ -1,0 +1,4 @@
+/build
+src/commonMain/kotlin/com/vnteam/architecturetemplates/secrets/secrets/Secrets.kt
+
+../sharedsrc/commonMain/kotlin/secrets/Secrets.kt

@@ -1,0 +1,33 @@
+CREATE TABLE IF NOT EXISTS DemoObjectWithOwner (
+    id SERIAL PRIMARY KEY,
+    demoObjectId TEXT UNIQUE NOT NULL,
+    name TEXT,
+    htmlUrl TEXT,
+    description TEXT,
+    login TEXT,
+    ownerId TEXT,
+    avatarUrl TEXT,
+    url TEXT
+);
+
+insertDemoObjectWithOwner {
+    INSERT INTO DemoObjectWithOwner(demoObjectId, name, htmlUrl, description, login, ownerId, avatarUrl, url)
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+    ON CONFLICT (demoObjectId) DO UPDATE SET
+        name = EXCLUDED.name,
+        htmlUrl = EXCLUDED.htmlUrl,
+        description = EXCLUDED.description,
+        login = EXCLUDED.login,
+        ownerId = EXCLUDED.ownerId,
+        avatarUrl = EXCLUDED.avatarUrl,
+        url = EXCLUDED.url;
+}
+
+getDemoObjectWithOwners:
+SELECT * FROM DemoObjectWithOwner;
+
+getDemoObjectWithOwnerById:
+SELECT * FROM DemoObjectWithOwner WHERE demoObjectId = ?;
+
+deleteDemoObjectWithOwnerById:
+DELETE FROM DemoObjectWithOwner WHERE demoObjectId = ?;

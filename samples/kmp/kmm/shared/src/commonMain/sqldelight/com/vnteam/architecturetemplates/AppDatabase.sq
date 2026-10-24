@@ -1,0 +1,20 @@
+CREATE TABLE DemoObjectWithOwner (
+    id INTEGER PRIMARY KEY,
+    name TEXT,
+    fullName TEXT,
+    htmlUrl TEXT,
+    description TEXT,
+    login TEXT,
+    ownerId INTEGER,
+    avatarUrl TEXT
+);
+
+insertDemoObjectWithOwner:
+INSERT OR REPLACE INTO DemoObjectWithOwner(id, name, fullName, htmlUrl, description, login, ownerId, avatarUrl)
+VALUES (?, ?, ?, ?, ?, ?, ?, ?);
+
+getDemoObjectWithOwners:
+SELECT * FROM DemoObjectWithOwner;
+
+getDemoObjectWithOwnerById:
+SELECT * FROM DemoObjectWithOwner WHERE id = ?;

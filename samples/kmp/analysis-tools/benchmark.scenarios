@@ -1,0 +1,7 @@
+clean {
+  tasks = [clean, assembleDebug]
+}
+
+incremental {
+  tasks = [assembleDebug]
+}

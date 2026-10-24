@@ -1,0 +1,4 @@
+*.psd filter=lfs diff=lfs merge=lfs -text
+*shared filter=lfs diff=lfs merge=lfs -text
+shared/build/bin/iosSimulatorArm64/debugFramework/shared.framework/shared filter=lfs diff=lfs merge=lfs -text
+shared/build/xcode-frameworks/Debug/iphonesimulator17.4/shared.framework/shared filter=lfs diff=lfs merge=lfs -text
