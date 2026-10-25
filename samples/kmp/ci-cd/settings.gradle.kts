@@ -36,6 +36,7 @@ gradleEnterprise {
 buildCache {
     remote(HttpBuildCache::class) {
         url = URI("http://localhost:5071/cache/")
+        isEnabled = providers.gradleProperty("remoteCache").isPresent
         isPush = true
         isAllowInsecureProtocol = true
         isEnabled = false
