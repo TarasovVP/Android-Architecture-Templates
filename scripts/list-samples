@@ -1,0 +1,17 @@
+#!/bin/sh
+# Print a table of every sample in the catalog.
+set -eu
+. "$(dirname "$0")/lib/common.sh"
+
+pretty_platforms() {
+    catalog_list "$1" platforms | sed -e 's/^android$/Android/' -e 's/^ios$/iOS/' -e 's/^desktop$/Desktop/' -e 's/^web$/Web/' -e 's/^server$/Server/' | paste -sd/ -
+}
+
+pretty_status() {
+    catalog_str "$1" status | awk '{ print toupper(substr($0, 1, 1)) substr($0, 2) }'
+}
+
+printf '%-34s %-28s %-36s %-11s %s\n' ID Architecture Platforms Status Path
+for id in $(catalog_ids); do
+    printf '%-34s %-28s %-36s %-11s %s\n' "$id" "$(catalog_str "$id" architecture)" "$(pretty_platforms "$id")" "$(pretty_status "$id")" "$(catalog_str "$id" path)"
+done
