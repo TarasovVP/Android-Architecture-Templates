@@ -4,8 +4,6 @@
   "description": "Adds a secrets Gradle plugin, custom ktlint rules, an Android Lint check and a pre-commit hook.",
   "category": "kmp",
   "path": "samples/kmp/custom-plugins",
-  "sourceBranch": "kmp_with_custom_plugins",
-  "sourceCommit": "e6baff204148d010c726f86dd9128deb880328c2",
   "status": "reference",
   "architecture": "MVI, multi-module",
   "ui": "Compose Multiplatform + Compose HTML (web)",

@@ -4,8 +4,6 @@
   "description": "One code base for Android, iOS, Desktop and Web.",
   "category": "kmp",
   "path": "samples/kmp/basic",
-  "sourceBranch": "kmp_implementation",
-  "sourceCommit": "703c240c6f15f1e30770692915f69d769a56d3bd",
   "status": "reference",
   "architecture": "MVI",
   "ui": "Compose Multiplatform + Compose HTML",

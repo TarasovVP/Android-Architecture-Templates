@@ -90,9 +90,6 @@ current and complete state.
 | [`kmp-analysis-tools`](samples/kmp/analysis-tools) | MVI, multi-module | Compose Multiplatform + Compose HTML (web) | Koin | Ktor Client | SQLDelight + DataStore | Navigation Compose | Android / iOS / Desktop / Web / Server | Reference |
 | [`kmp-ci-cd`](samples/kmp/ci-cd) | MVI, multi-module | Compose Multiplatform + Compose HTML (web) | Koin | Ktor Client | SQLDelight + DataStore | Navigation Compose | Android / iOS / Desktop / Web / Server | Latest |
 
-The original branch of every sample is listed in its `sample.json` and README
-(`sourceBranch`). The branches still exist and their history was not changed.
-
 ## Where to start
 
 - **New to the scenario:** [`android-mvvm`](samples/android/mvvm) - the classic Android stack
@@ -145,7 +142,7 @@ You can also work directly in a sample: `cd samples/kmp/multimodule && ./gradlew
 ## Environment requirements
 
 General: an Android SDK (`ANDROID_HOME` or `sdk.dir` in the sample's `local.properties`),
-internet access to download dependencies.  Exact versions are in each sample's `sample.json` and README.
+internet access to download dependencies. Exact versions are in each sample's `sample.json` and README.
 
 | ID | JDK | Extra requirements |
 |----|-----|--------------------|
@@ -179,6 +176,12 @@ Notes:
 ## Comparing samples
 
 - Side by side in your editor, or `git diff --no-index samples/android/mvvm samples/android/mvvm-clean`.
+- Useful pairs, each differing mainly in one decision (see the table above):
+  - `android-mvp` vs `android-mvvm`: MVP with Dagger 2, Volley and Realm vs MVVM with Hilt,
+    Retrofit and Room.
+  - `android-mvvm` vs `android-mvvm-clean`: the effect of Clean Architecture layering.
+  - `android-mvvm` vs `android-mvvm-compose`: XML Views vs Jetpack Compose inside Fragments.
+  - `kmp-basic` vs `kmp-with-server`: adds the Ktor server.
 
 ## How the project evolved
 
@@ -187,6 +190,9 @@ Android: `mvc-native` -> `mvc-async-task` -> `mvp` -> `mvvm` -> `mvvm-compose` -
 KMP: `mvi-compose-navigation` -> `kmm` -> `basic` -> `with-server` -> `multimodule` -> `tests` ->
 `custom-plugins` -> `analysis-tools` -> `ci-cd`, with `git-submodules` as a side branch of
 `multimodule`.
+
+Each step changes one decision (architecture, UI toolkit, networking, storage, platforms, module
+structure, tests, analysis, CI/CD); the table in [All samples](#all-samples) shows the result.
 
 ## Articles
 

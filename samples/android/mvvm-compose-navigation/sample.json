@@ -4,8 +4,6 @@
   "description": "Single-activity Compose app with StateFlow, Ktor, SQLDelight and Koin.",
   "category": "android",
   "path": "samples/android/mvvm-compose-navigation",
-  "sourceBranch": "mvvm_compose_navigation_implementation",
-  "sourceCommit": "bbe6472061114c63acf1d2d4e190ca000061faf0",
   "status": "reference",
   "architecture": "MVVM",
   "ui": "Jetpack Compose",

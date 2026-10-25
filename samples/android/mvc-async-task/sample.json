@@ -4,8 +4,6 @@
   "description": "MVC with OkHttp, Moshi, ORMLite and the deprecated AsyncTask.",
   "category": "android",
   "path": "samples/android/mvc-async-task",
-  "sourceBranch": "mvc_async_task_implementation",
-  "sourceCommit": "6c02c7164ed779a4aff8270e2c8a0f2ec830856d",
   "status": "historical",
   "architecture": "MVC",
   "ui": "XML Views",

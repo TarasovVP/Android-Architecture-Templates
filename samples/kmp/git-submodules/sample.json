@@ -4,8 +4,6 @@
   "description": "The multi-module structure with shared and web extracted into separate repositories (vendored here).",
   "category": "kmp",
   "path": "samples/kmp/git-submodules",
-  "sourceBranch": "kmp_with_git_submodules_implementation",
-  "sourceCommit": "e8ee3e40c0bf90d7f9780be27855c5077d5403c6",
   "status": "reference",
   "architecture": "MVI, multi-repo",
   "ui": "Compose Multiplatform + Compose HTML (web)",

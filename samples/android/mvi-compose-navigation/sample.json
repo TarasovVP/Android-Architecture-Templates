@@ -4,8 +4,6 @@
   "description": "Unidirectional data flow with immutable state, intents and Voyager navigation.",
   "category": "android",
   "path": "samples/android/mvi-compose-navigation",
-  "sourceBranch": "mvi_compose_navigation_implementation",
-  "sourceCommit": "0dff2a85a49ad211b272a3e6b1207da03f850bb0",
   "status": "reference",
   "architecture": "MVI",
   "ui": "Jetpack Compose",

@@ -4,8 +4,6 @@
   "description": "First shared-code version: Kotlin Multiplatform Mobile with a shared Compose UI.",
   "category": "kmp",
   "path": "samples/kmp/kmm",
-  "sourceBranch": "kmm_implementation",
-  "sourceCommit": "001f6c6fac3801ab443ee6d7ec7db8bda456ec96",
   "status": "historical",
   "architecture": "MVI",
   "ui": "Compose Multiplatform",

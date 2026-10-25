@@ -4,8 +4,6 @@
   "description": "Latest state: Jenkins + Fastlane, Macrobenchmark, Baseline Profile and extended GitHub workflow.",
   "category": "kmp",
   "path": "samples/kmp/ci-cd",
-  "sourceBranch": "kmp_with_ci_cd",
-  "sourceCommit": "f37069c1db3c1e86c876654286ff3f7122812ba7",
   "status": "latest",
   "architecture": "MVI, multi-module",
   "ui": "Compose Multiplatform + Compose HTML (web)",

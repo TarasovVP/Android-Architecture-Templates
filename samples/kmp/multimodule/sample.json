@@ -4,8 +4,6 @@
   "description": "One Gradle module per platform application plus core and shared libraries.",
   "category": "kmp",
   "path": "samples/kmp/multimodule",
-  "sourceBranch": "kmp_with_multimodules_implementation",
-  "sourceCommit": "71291d4e222d91f8bf46886e2682f8ae48f52d3f",
   "status": "reference",
   "architecture": "MVI, multi-module",
   "ui": "Compose Multiplatform + Compose HTML (web)",

@@ -12,7 +12,6 @@ echo "$(catalog_str "$id" name) ($id)"
 echo
 echo "Description   : $(catalog_str "$id" description)"
 echo "Path          : $(catalog_str "$id" path)"
-echo "Source branch : $(catalog_str "$id" sourceBranch) @ $(catalog_str "$id" sourceCommit)"
 echo "Status        : $(catalog_str "$id" status)"
 echo "Architecture  : $(catalog_str "$id" architecture)"
 echo "UI            : $(catalog_str "$id" ui)"

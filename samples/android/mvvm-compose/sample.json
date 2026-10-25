@@ -4,8 +4,6 @@
   "description": "MVVM where the Views are replaced by Compose screens hosted in Fragments.",
   "category": "android",
   "path": "samples/android/mvvm-compose",
-  "sourceBranch": "mvvm_compose_implementation",
-  "sourceCommit": "609620a1195f30fc3c72bd1c4fb90003e5ede039",
   "status": "reference",
   "architecture": "MVVM",
   "ui": "Jetpack Compose in Fragments",

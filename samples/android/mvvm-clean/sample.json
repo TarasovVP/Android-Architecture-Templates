@@ -4,8 +4,6 @@
   "description": "MVVM with explicit domain, data and presentation layers.",
   "category": "android",
   "path": "samples/android/mvvm-clean",
-  "sourceBranch": "mvvm_clean_architecture_implementation",
-  "sourceCommit": "e9c9326f8f91048fddecd23aa6ba0f841e23dda5",
   "status": "reference",
   "architecture": "MVVM + Clean Architecture",
   "ui": "XML Views + Fragments",

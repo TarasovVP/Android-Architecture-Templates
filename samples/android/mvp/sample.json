@@ -4,8 +4,6 @@
   "description": "Presenters and view contracts with Dagger 2, Volley, RxJava and Realm.",
   "category": "android",
   "path": "samples/android/mvp",
-  "sourceBranch": "mvp_implementation",
-  "sourceCommit": "87af8031bbec7a7167438a6fbc87db2a912b74fb",
   "status": "reference",
   "architecture": "MVP",
   "ui": "XML Views + Fragments",

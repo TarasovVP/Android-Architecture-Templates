@@ -4,8 +4,6 @@
   "description": "Adds a Ktor + PostgreSQL server with its own REST API.",
   "category": "kmp",
   "path": "samples/kmp/with-server",
-  "sourceBranch": "kmp_with_server_implementation",
-  "sourceCommit": "5ecf0b823b1df673b0ff28f45129454e81460df0",
   "status": "reference",
   "architecture": "MVI + Ktor server",
   "ui": "Compose Multiplatform + Compose HTML",

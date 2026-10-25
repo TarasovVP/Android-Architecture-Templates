@@ -4,8 +4,6 @@
   "description": "Layered MVVM with ViewModel, LiveData, Hilt, Retrofit and Room.",
   "category": "android",
   "path": "samples/android/mvvm",
-  "sourceBranch": "mvvm_implementation",
-  "sourceCommit": "be3505bc932ade33fccb63ffce0341a5a04e716c",
   "status": "reference",
   "architecture": "MVVM",
   "ui": "XML Views + Fragments",

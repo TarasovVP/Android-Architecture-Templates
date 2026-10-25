@@ -4,8 +4,6 @@
   "description": "Baseline MVC: activities act as controllers and use only platform APIs.",
   "category": "android",
   "path": "samples/android/mvc-native",
-  "sourceBranch": "mvc_native_implementation",
-  "sourceCommit": "86aef182bd148070b3532f3416a29f4e8eeb074a",
   "status": "historical",
   "architecture": "MVC",
   "ui": "XML Views",

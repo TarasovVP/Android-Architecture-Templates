@@ -4,8 +4,6 @@
   "description": "Adds Detekt, Kover, SonarQube, a GitHub Actions workflow and the Gradle build cache.",
   "category": "kmp",
   "path": "samples/kmp/analysis-tools",
-  "sourceBranch": "kmp_with_analyze_tools",
-  "sourceCommit": "dcde9f37ad06c3735503aff3ada44011ee3a74ef",
   "status": "reference",
   "architecture": "MVI, multi-module",
   "ui": "Compose Multiplatform + Compose HTML (web)",

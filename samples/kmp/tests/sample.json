@@ -4,8 +4,6 @@
   "description": "Adds commonTest unit tests, fakes, Koin test and Kover coverage.",
   "category": "kmp",
   "path": "samples/kmp/tests",
-  "sourceBranch": "kmp_with_tests",
-  "sourceCommit": "07ea49cc5ee993561c1dc0c04ea4b89d1e2ff725",
   "status": "reference",
   "architecture": "MVI, multi-module",
   "ui": "Compose Multiplatform + Compose HTML (web)",
