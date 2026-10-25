@@ -1,0 +1,27 @@
+CREATE TABLE IF NOT EXISTS DemoObjectWithOwner (
+    id INTEGER PRIMARY KEY,
+    name TEXT,
+    fullName TEXT,
+    htmlUrl TEXT,
+    description TEXT,
+    login TEXT,
+    ownerId INTEGER,
+    avatarUrl TEXT,
+    url TEXT
+);
+
+clearDemoObjects:
+DELETE FROM DemoObjectWithOwner;
+
+insertDemoObjectWithOwner:
+INSERT OR REPLACE INTO DemoObjectWithOwner(id, name, fullName, htmlUrl, description, login, ownerId, avatarUrl, url)
+VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);
+
+getDemoObjectWithOwners:
+SELECT * FROM DemoObjectWithOwner;
+
+getDemoObjectWithOwnerById:
+SELECT * FROM DemoObjectWithOwner WHERE id = ?;
+
+deleteDemoObjectWithOwnerById:
+DELETE FROM DemoObjectWithOwner WHERE id = ?;

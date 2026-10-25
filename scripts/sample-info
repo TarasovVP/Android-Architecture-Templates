@@ -1,0 +1,50 @@
+#!/bin/sh
+# Show metadata of one sample: tools, environment needs, commands.
+set -eu
+. "$(dirname "$0")/lib/common.sh"
+
+require_sample "${1:-}"
+id=$1
+
+yesno() { [ "$(catalog_str "$id" "$1")" = "true" ] && printf 'yes' || printf 'no'; }
+
+echo "$(catalog_str "$id" name) ($id)"
+echo
+echo "Description   : $(catalog_str "$id" description)"
+echo "Path          : $(catalog_str "$id" path)"
+echo "Source branch : $(catalog_str "$id" sourceBranch) @ $(catalog_str "$id" sourceCommit)"
+echo "Status        : $(catalog_str "$id" status)"
+echo "Architecture  : $(catalog_str "$id" architecture)"
+echo "UI            : $(catalog_str "$id" ui)"
+echo "DI            : $(catalog_str "$id" di)"
+echo "Network       : $(catalog_str "$id" network)"
+echo "Storage       : $(catalog_str "$id" storage)"
+echo "Navigation    : $(catalog_str "$id" navigation)"
+echo "Platforms     : $(catalog_list "$id" platforms | paste -sd, - | sed 's/,/, /g')"
+echo
+echo "Gradle        : $(catalog_str "$id" gradleVersion)"
+echo "AGP           : $(catalog_str "$id" agpVersion)"
+echo "Kotlin        : $(catalog_str "$id" kotlinVersion)"
+echo "JDK           : $(catalog_str "$id" jdkVersion)"
+echo "compileSdk    : $(catalog_str "$id" compileSdk) (targetSdk $(catalog_str "$id" targetSdk))"
+echo
+echo "Environment:"
+echo "  Android SDK : $(yesno requiresAndroidSdk)"
+echo "  Xcode       : $(yesno requiresXcode) (iOS target only)"
+echo "  Node.js     : $(yesno requiresNode) (Gradle downloads its own for web targets)"
+echo "  PostgreSQL  : $(yesno requiresPostgres) (server target only)"
+echo "  Docker      : $(yesno requiresDocker) (server image only)"
+echo "  Secrets     : $(yesno requiresSecrets) (see the sample README)"
+echo "  CI/CD files : $(yesno hasCiCd)"
+echo
+echo "Build commands:"
+catalog_list "$id" buildCommands | sed 's/^/  /'
+echo "Test commands:"
+catalog_list "$id" testCommands | sed 's/^/  /'
+echo "Run targets (scripts/run-sample $id <target>):"
+catalog_targets "$id" | awk -F= '{ printf "  %-8s ./gradlew %s\n", $1, $2 }'
+article=$(catalog_raw "$id" article)
+if [ "$article" != "null" ]; then
+    echo
+    echo "Article       : $(printf '%s' "$article" | sed -e 's/.*"title": "\([^"]*\)".*/\1/') - $(printf '%s' "$article" | sed -e 's/.*"url": "\([^"]*\)".*/\1/')"
+fi

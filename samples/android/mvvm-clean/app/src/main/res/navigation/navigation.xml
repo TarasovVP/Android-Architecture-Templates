@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/navigation"
+    app:startDestination="@+id/listFragment">
+
+    <fragment
+        android:id="@+id/listFragment"
+        android:name="com.vnteam.architecturetemplates.presentation.list.ListFragment" >
+        <action
+            android:id="@+id/startDetailsFragment"
+            app:destination="@id/detailsFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/detailsFragment"
+        android:name="com.vnteam.architecturetemplates.presentation.details.DetailsFragment">
+        <argument
+            android:name="forkId"
+            app:argType="long" />
+    </fragment>
+
+</navigation>

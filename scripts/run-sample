@@ -1,0 +1,46 @@
+#!/bin/sh
+# Usage: run-sample <sample-id> <android|desktop|web|server>
+# Nothing is installed for you: missing tools are reported with instructions.
+set -eu
+. "$(dirname "$0")/lib/common.sh"
+
+require_sample "${1:-}"
+id=$1
+target=${2:-}
+targets=$(catalog_targets "$id")
+valid=$(printf '%s\n' "$targets" | awk -F= '{print $1}' | paste -sd' ' -)
+
+if [ -z "$target" ]; then
+    die "missing <target>. Available for $id: $valid"
+fi
+if [ "$target" = "ios" ]; then
+    die "iOS is not started from the command line. Open iosApp/ of the sample in Xcode (see the sample README)."
+fi
+task=$(printf '%s\n' "$targets" | awk -F= -v t="$target" '$1 == t { print $2 }')
+[ -n "$task" ] || die "sample $id has no run target '$target'. Available: $valid"
+
+select_jdk "$id"
+check_android_sdk "$id"
+
+case "$target" in
+android)
+    if command -v adb >/dev/null 2>&1; then
+        adb devices | awk 'NR > 1 && $2 == "device"' | grep -q . ||
+            die "no connected device or running emulator (adb devices is empty). Start an emulator or plug in a device."
+    else
+        die "adb not found. Add \$ANDROID_HOME/platform-tools to PATH."
+    fi
+    ;;
+server)
+    if [ "$(catalog_str "$id" requiresPostgres)" = "true" ]; then
+        echo "note: the server expects PostgreSQL; set JDBC_URL, DRIVER_CLASS_NAME, DB_USER_NAME and DB_USER_PASSWORD (see the sample README)." >&2
+    fi
+    ;;
+esac
+if [ "$(catalog_str "$id" requiresSecrets)" = "true" ]; then
+    echo "note: this sample reads secrets from local.properties/environment; see its README." >&2
+fi
+
+in_sample "$id"
+echo "==> $id: ./gradlew $task"
+exec ./gradlew "$task"

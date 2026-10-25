@@ -1,19 +1,32 @@
-*.iml
-.gradle
-/local.properties
-/.idea/
+# Gradle / Android
+**/.gradle/
 **/build/
-/captures
-.externalNativeBuild
-.cxx
-local.properties
-shared/build/bin/iosSimulatorArm64/debugFramework/shared.framework/shared
-shared/build/xcode-frameworks/Debug/iphonesimulator17.4/shared.framework/shared
-shared/src/commonMain/kotlin/config/BuildConfig.kt
-**/config/BuildConfig.kt
-/gradle-user-home/
-/profile-out*/
-/.kotlin/
+**/.kotlin/
+**/local.properties
+**/captures/
+**/.externalNativeBuild/
+**/.cxx/
+**/*.apk
+**/*.aab
+**/*.jks
+**/*.keystore
 
+# IDE
+**/.idea/
+**/*.iml
+
+# Node / web outputs
+**/node_modules/
+**/dist/
+
+# Xcode user data
+**/xcuserdata/
+
+# OS
 .DS_Store
 **/.DS_Store
+Thumbs.db
+
+# Wrapper files are intentionally tracked
+!**/gradle/wrapper/gradle-wrapper.jar
+!**/gradle/wrapper/gradle-wrapper.properties

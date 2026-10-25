@@ -1,0 +1,18 @@
+#!/bin/sh
+# Usage: test-sample <sample-id> [gradle-task...]
+# Runs the sample's own Gradle wrapper; the exit code is Gradle's.
+set -eu
+. "$(dirname "$0")/lib/common.sh"
+
+require_sample "${1:-}"
+id=$1
+shift
+select_jdk "$id"
+check_android_sdk "$id"
+in_sample "$id"
+if [ "$#" -eq 0 ]; then
+    # shellcheck disable=SC2046
+    set -- $(default_tasks "$id" testCommands)
+fi
+echo "==> $id: ./gradlew $*"
+exec ./gradlew "$@"

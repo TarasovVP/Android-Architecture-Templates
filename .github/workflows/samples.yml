@@ -1,0 +1,140 @@
+name: Samples
+
+# Every sample under samples/ is an independent Gradle build with its own wrapper.
+# There is no root Gradle build, so each matrix entry builds one sample with the JDK it needs.
+#
+# Workflows stored inside samples (for example samples/kmp/analysis-tools/.github and
+# samples/kmp/ci-cd/.github) are part of those examples only: GitHub reads workflows from the
+# repository root, so they are never run.
+
+on:
+  push:
+    branches: [master, catalog-monorepo]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: samples-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  catalog:
+    name: Validate catalog
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: There must be no root Gradle build
+        run: |
+          for f in settings.gradle settings.gradle.kts build.gradle build.gradle.kts; do
+            if [ -e "$f" ]; then echo "unexpected root $f"; exit 1; fi
+          done
+
+      - name: Catalog matches the samples on disk
+        run: |
+          python3 - <<'PY'
+          import json, os, sys
+          cat = json.load(open("catalog/samples.json"))["samples"]
+          bad = []
+          for s in cat:
+              d = s["path"]
+              for f in ("gradlew", "sample.json", "README.md"):
+                  if not os.path.exists(os.path.join(d, f)):
+                      bad.append(f"{d}: missing {f}")
+              if not any(os.path.exists(os.path.join(d, n)) for n in ("settings.gradle", "settings.gradle.kts")):
+                  bad.append(f"{d}: no settings.gradle(.kts)")
+              if os.path.exists(os.path.join(d, "sample.json")) and json.load(open(os.path.join(d, "sample.json"))) != s:
+                  bad.append(f"{d}: sample.json differs from catalog/samples.json")
+          on_disk = {os.path.join("samples", c, n) for c in os.listdir("samples") for n in os.listdir(os.path.join("samples", c))}
+          for p in sorted(on_disk - {s["path"] for s in cat}):
+              bad.append(f"{p}: not in catalog")
+          print("\n".join(bad) or f"{len(cat)} samples OK")
+          sys.exit(1 if bad else 0)
+          PY
+
+      - name: Scripts work
+        run: |
+          for f in scripts/lib/common.sh scripts/list-samples scripts/sample-info scripts/build-sample scripts/test-sample scripts/run-sample; do sh -n "$f"; done
+          ./scripts/list-samples
+          ./scripts/sample-info android-mvvm
+          if ./scripts/build-sample no-such-sample; then echo "unknown id must fail"; exit 1; fi
+
+      - name: No secrets or build outputs are tracked
+        run: |
+          bad=$(git ls-files | grep -E '(^|/)(local\.properties|.*\.jks|.*\.keystore|.*\.apk|.*\.aab|\.idea/.*|build/.*)$' || true)
+          if [ -n "$bad" ]; then echo "$bad"; exit 1; fi
+
+  build:
+    name: ${{ matrix.group }} / ${{ matrix.id }}
+    needs: catalog
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          # historical-android: Gradle 7.5, AGP 7.4.1
+          - { group: historical-android, id: android-mvc-native, path: samples/android/mvc-native, jdk: 17, placeholders: false, test: true }
+          - { group: historical-android, id: android-mvc-async-task, path: samples/android/mvc-async-task, jdk: 17, placeholders: false, test: true }
+          - { group: historical-android, id: android-mvp, path: samples/android/mvp, jdk: 17, placeholders: false, test: true }
+          # modern-android: Gradle 8.4, AGP 8.3.0
+          - { group: modern-android, id: android-mvvm, path: samples/android/mvvm, jdk: 17, placeholders: false, test: true }
+          - { group: modern-android, id: android-mvvm-clean, path: samples/android/mvvm-clean, jdk: 17, placeholders: false, test: true }
+          - { group: modern-android, id: android-mvvm-compose, path: samples/android/mvvm-compose, jdk: 17, placeholders: false, test: true }
+          - { group: modern-android, id: android-mvvm-compose-navigation, path: samples/android/mvvm-compose-navigation, jdk: 17, placeholders: false, test: true }
+          - { group: modern-android, id: android-mvi-compose-navigation, path: samples/android/mvi-compose-navigation, jdk: 17, placeholders: false, test: true }
+          # early-kmp: Gradle 8.4 / 8.7, Android target only (iOS needs macOS + Xcode, server needs PostgreSQL to run)
+          - { group: early-kmp, id: kmp-kmm, path: samples/kmp/kmm, jdk: 17, placeholders: false, test: true }
+          - { group: early-kmp, id: kmp-basic, path: samples/kmp/basic, jdk: 17, placeholders: false, test: true }
+          - { group: early-kmp, id: kmp-with-server, path: samples/kmp/with-server, jdk: 17, placeholders: false, test: true }
+          - { group: early-kmp, id: kmp-multimodule, path: samples/kmp/multimodule, jdk: 17, placeholders: false, test: true }
+          - { group: early-kmp, id: kmp-git-submodules, path: samples/kmp/git-submodules, jdk: 17, placeholders: false, test: true }
+          # modern-kmp: need placeholder (non-secret) configuration, see the "Placeholder configuration" step
+          - { group: modern-kmp, id: kmp-tests, path: samples/kmp/tests, jdk: 17, placeholders: true, test: true }
+          - { group: modern-kmp, id: kmp-custom-plugins, path: samples/kmp/custom-plugins, jdk: 17, placeholders: true, test: true }
+          - { group: modern-kmp, id: kmp-analysis-tools, path: samples/kmp/analysis-tools, jdk: 17, placeholders: true, test: true }
+          - { group: modern-kmp, id: kmp-ci-cd, path: samples/kmp/ci-cd, jdk: 21, placeholders: true, test: false }
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: ${{ matrix.jdk }}
+
+      - name: Gradle cache (per sample)
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+          key: gradle-${{ matrix.id }}-${{ runner.os }}-${{ hashFiles(format('{0}/**/*.gradle*', matrix.path), format('{0}/**/libs.versions.toml', matrix.path), format('{0}/gradle/wrapper/gradle-wrapper.properties', matrix.path)) }}
+          restore-keys: |
+            gradle-${{ matrix.id }}-${{ runner.os }}-
+
+      # Not real secrets: values only let the build configure. Real secrets, signing keystores,
+      # Sonar tokens, PostgreSQL, Docker and Xcode are never used in this workflow.
+      - name: Placeholder configuration
+        if: matrix.placeholders
+        run: printf 'CLOUD_URL=https://example.invalid\n' > "${{ matrix.path }}/local.properties"
+
+      - name: Build
+        env:
+          STORE_PASSWORD: placeholder
+          KEY_ALIAS: placeholder
+          KEY_PASSWORD: placeholder
+        run: ./scripts/build-sample ${{ matrix.id }}
+
+      # kmp-ci-cd is excluded from the test step: DeleteDemoObjectUseCaseTest calls the real server
+      # behind CLOUD_URL (57 of 58 tests pass offline). Run `./scripts/test-sample kmp-ci-cd` with a real URL.
+      - name: Test
+        if: matrix.test
+        env:
+          STORE_PASSWORD: placeholder
+          KEY_ALIAS: placeholder
+          KEY_PASSWORD: placeholder
+        run: ./scripts/test-sample ${{ matrix.id }}
