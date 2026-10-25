@@ -8,7 +8,7 @@ android {
     compileSdk 33
 
     defaultConfig {
-        applicationId "com.vnteam.architecturetemplates"
+        applicationId "com.tarasovvp.architecturetemplates.mvc.native"
         minSdk 24
         targetSdk 33
         versionCode 1

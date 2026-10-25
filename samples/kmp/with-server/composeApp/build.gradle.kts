@@ -111,7 +111,7 @@ android {
     sourceSets["main"].res.srcDirs("src/androidMain/res")
 
     defaultConfig {
-        applicationId = "com.vnteam.architecturetemplates"
+        applicationId = "com.tarasovvp.architecturetemplates.kmp.withserver"
         minSdk = libs.versions.minSdk.get().toInt()
         targetSdk = libs.versions.targetSdk.get().toInt()
         versionCode = 1

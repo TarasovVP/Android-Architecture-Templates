@@ -13,7 +13,7 @@ android {
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.vnteam.architecturetemplates"
+        applicationId = "com.tarasovvp.architecturetemplates.mvvm.compose"
         minSdk = 24
         targetSdk = 34
         versionCode = 1
