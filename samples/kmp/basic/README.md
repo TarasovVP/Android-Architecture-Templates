@@ -1,3 +1,60 @@
+# KMP (Android, iOS, Desktop, Web)
+
+> **Independent Gradle build** from the [Android Architecture Templates](../../../README.md)
+> catalog. Open *this folder* in Android Studio / IntelliJ IDEA or run `./gradlew` here.
+> It has its own Gradle wrapper and version catalog and does not depend on other samples.
+
+| | |
+|---|---|
+| Catalog ID | `kmp-basic` |
+| Source branch | `kmp_implementation` (commit `703c240c`) |
+| Status | Reference - a complete, self-contained implementation of an approach. |
+| Architecture | MVI |
+| UI | Compose Multiplatform + Compose HTML |
+| Platforms | Android, iOS, Desktop, Web |
+| Key technologies | DI: Koin; network: Ktor Client; storage: SQLDelight + DataStore; navigation: Navigation Compose |
+| Gradle modules | `:composeApp`, `:shared`, `:webApp` |
+| Tool versions | Gradle 8.4, AGP 8.3.2, Kotlin 2.0.20 |
+| JDK | 17 |
+| Android SDK | compileSdk 34, targetSdk 34 (set `ANDROID_HOME` or `sdk.dir` in `local.properties`) |
+| applicationId | `com.tarasovvp.architecturetemplates.kmp.basic` (changed from `com.vnteam.architecturetemplates` so samples can be installed side by side) |
+| Article | [KMP: Dependency Injection with Koin](https://medium.com/@vptarasov/kmp-dependency-injection-with-koin-d1f442f87cee) |
+
+## Build, test, run
+
+From this directory:
+
+```sh
+./gradlew :composeApp:assembleDebug    # build
+./gradlew :shared:testDebugUnitTest    # test
+./gradlew :composeApp:installDebug    # android
+./gradlew :composeApp:run    # desktop
+./gradlew :composeApp:jsBrowserDevelopmentRun    # web
+```
+
+Or from the repository root: `./scripts/build-sample kmp-basic`, `./scripts/test-sample kmp-basic`,
+`./scripts/run-sample kmp-basic <target>`.
+- iOS: open `iosApp/` in Xcode (macOS only); it is not started from the command line.
+
+## Environment variables
+
+- none
+
+## Secrets / `local.properties`
+
+none
+
+Never commit `local.properties`, keystores or real secrets.
+
+## Known limitations
+
+- The source branch tracked compiled `server/build` outputs but no `server` sources; those outputs are not imported and there is no server module.
+- iOS is only buildable on macOS with Xcode.
+
+The original README of the source branch follows unchanged.
+
+<!-- catalog:original-readme -->
+
 # KMP — Android, iOS, Desktop and Web
 
 The full Kotlin Multiplatform version of the feature: one shared codebase (domain, data, ViewModels, Compose UI) running on **Android, iOS, Desktop (JVM) and Web (Kotlin/JS)**. It extends the [KMM branch](https://github.com/TarasovVP/Android-Architecture-Templates/tree/kmm_implementation) with desktop and web targets, user preferences and platform-specific entry points.

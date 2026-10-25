@@ -21,7 +21,7 @@
   "compileSdk": 34,
   "targetSdk": 34,
   "buildCommands": ["./gradlew :mobile:assembleDebug"],
-  "testCommands": ["./gradlew :shared:desktopTest"],
+  "testCommands": ["./gradlew :shared:jvmTest"],
   "runTargets": {"android": ":mobile:installDebug", "desktop": ":desktop:run", "web": ":web:jsBrowserDevelopmentRun", "server": ":server:run"},
   "requiresAndroidSdk": true,
   "requiresXcode": true,

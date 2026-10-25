@@ -1,3 +1,61 @@
+# KMP with unit tests
+
+> **Independent Gradle build** from the [Android Architecture Templates](../../../README.md)
+> catalog. Open *this folder* in Android Studio / IntelliJ IDEA or run `./gradlew` here.
+> It has its own Gradle wrapper and version catalog and does not depend on other samples.
+
+| | |
+|---|---|
+| Catalog ID | `kmp-tests` |
+| Source branch | `kmp_with_tests` (commit `07ea49cc`) |
+| Status | Reference - a complete, self-contained implementation of an approach. |
+| Architecture | MVI, multi-module |
+| UI | Compose Multiplatform + Compose HTML (web) |
+| Platforms | Android, iOS, Desktop, Web, Server |
+| Key technologies | DI: Koin; network: Ktor Client; storage: SQLDelight + DataStore; navigation: Navigation Compose |
+| Gradle modules | `:core`, `:shared`, `:mobile`, `:desktop`, `:web`, `:server`, `:secrets-plugin` |
+| Tool versions | Gradle 8.7, AGP 8.5.2, Kotlin 2.1.10 |
+| JDK | 17 |
+| Android SDK | compileSdk 34, targetSdk 34 (set `ANDROID_HOME` or `sdk.dir` in `local.properties`) |
+| applicationId | `com.tarasovvp.architecturetemplates.kmp.tests` (changed from `com.vnteam.architecturetemplates` so samples can be installed side by side) |
+| Article | [Unit Testing in Kotlin Multiplatform](https://medium.com/@vptarasov/unit-testing-in-kotlin-multiplatform-fb3ca7d5c869) |
+
+## Build, test, run
+
+From this directory:
+
+```sh
+./gradlew :mobile:assembleDebug    # build
+./gradlew :shared:jvmTest    # test
+./gradlew :mobile:installDebug    # android
+./gradlew :desktop:run    # desktop
+./gradlew :web:jsBrowserDevelopmentRun    # web
+./gradlew :server:run    # server
+```
+
+Or from the repository root: `./scripts/build-sample kmp-tests`, `./scripts/test-sample kmp-tests`,
+`./scripts/run-sample kmp-tests <target>`.
+- iOS: open `iosApp/` in Xcode (macOS only); it is not started from the command line.
+
+## Environment variables
+
+- `PORT`, `JDBC_URL`, `DRIVER_CLASS_NAME`, `DB_USER_NAME`, `DB_USER_PASSWORD` (the server has built-in defaults; set them to point at your PostgreSQL)
+
+## Secrets / `local.properties`
+
+`local.properties` in the sample root is required (the `generateSecrets` task fails without it). Used key: `CLOUD_URL=<server base url>`.
+
+Never commit `local.properties`, keystores or real secrets.
+
+## Known limitations
+
+- `:shared:generateSecrets` fails without a `local.properties` file in the sample root (create one with `CLOUD_URL=...`).
+- Running `:server:run` needs PostgreSQL.
+
+The original README of the source branch follows unchanged.
+
+<!-- catalog:original-readme -->
+
 # KMP with Unit Tests
 
 Adds an automated test suite to the [multi-module KMP project](https://github.com/TarasovVP/Android-Architecture-Templates/tree/kmp_with_multimodules_implementation). Tests are written once in `shared/commonTest` with `kotlin.test`, Koin test support and hand-written fakes, and run on every target that supports unit tests. Code coverage is measured with Kover.

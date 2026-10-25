@@ -1,3 +1,56 @@
+# Android MVC (native APIs)
+
+> **Independent Gradle build** from the [Android Architecture Templates](../../../README.md)
+> catalog. Open *this folder* in Android Studio / IntelliJ IDEA or run `./gradlew` here.
+> It has its own Gradle wrapper and version catalog and does not depend on other samples.
+
+| | |
+|---|---|
+| Catalog ID | `android-mvc-native` |
+| Source branch | `mvc_native_implementation` (commit `86aef182`) |
+| Status | Historical - kept to show how Android evolved; not recommended for new projects. |
+| Architecture | MVC |
+| UI | XML Views |
+| Platforms | Android |
+| Key technologies | DI: None; network: HttpURLConnection + Handler/Thread; storage: SQLiteDatabase; navigation: Activities (Intents) |
+| Gradle modules | `:app` |
+| Tool versions | Gradle 7.5, AGP 7.4.1, Kotlin 1.8.0 |
+| JDK | 17 |
+| Android SDK | compileSdk 33, targetSdk 33 (set `ANDROID_HOME` or `sdk.dir` in `local.properties`) |
+| applicationId | `com.tarasovvp.architecturetemplates.mvc.native` (changed from `com.vnteam.architecturetemplates` so samples can be installed side by side) |
+| Article | none |
+
+## Build, test, run
+
+From this directory:
+
+```sh
+./gradlew assembleDebug    # build
+./gradlew testDebugUnitTest    # test
+./gradlew :app:installDebug    # android
+```
+
+Or from the repository root: `./scripts/build-sample android-mvc-native`, `./scripts/test-sample android-mvc-native`,
+`./scripts/run-sample android-mvc-native <target>`.
+
+## Environment variables
+
+- none
+
+## Secrets / `local.properties`
+
+none
+
+Never commit `local.properties`, keystores or real secrets.
+
+## Known limitations
+
+- Historical sample: platform APIs only, no tests of its own.
+
+The original README of the source branch follows unchanged.
+
+<!-- catalog:original-readme -->
+
 # MVC with Native Android APIs
 
 The baseline of the repository: a two-screen Android app built with the Model-View-Controller pattern and only platform APIs (`HttpURLConnection`, `SQLiteDatabase`, `Handler` + `Thread`, `org.json`). No third-party libraries are used for networking, persistence, JSON or threading.

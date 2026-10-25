@@ -1,3 +1,58 @@
+# KMM (Android + iOS)
+
+> **Independent Gradle build** from the [Android Architecture Templates](../../../README.md)
+> catalog. Open *this folder* in Android Studio / IntelliJ IDEA or run `./gradlew` here.
+> It has its own Gradle wrapper and version catalog and does not depend on other samples.
+
+| | |
+|---|---|
+| Catalog ID | `kmp-kmm` |
+| Source branch | `kmm_implementation` (commit `001f6c6f`) |
+| Status | Historical - kept to show how Android evolved; not recommended for new projects. |
+| Architecture | MVI |
+| UI | Compose Multiplatform |
+| Platforms | Android, iOS |
+| Key technologies | DI: Koin; network: Ktor Client; storage: SQLDelight; navigation: Navigation Compose |
+| Gradle modules | `:app`, `:shared` |
+| Tool versions | Gradle 8.4, AGP 8.2.2, Kotlin 1.9.23 |
+| JDK | 17 |
+| Android SDK | compileSdk 34, targetSdk 34 (set `ANDROID_HOME` or `sdk.dir` in `local.properties`) |
+| applicationId | `com.tarasovvp.architecturetemplates.kmm` (changed from `com.vnteam.architecturetemplates` so samples can be installed side by side) |
+| Article | [KMP: Network Requests with Ktor](https://medium.com/@vptarasov/kmp-network-requests-with-ktor-498d0a7b544e) |
+
+## Build, test, run
+
+From this directory:
+
+```sh
+./gradlew :app:assembleDebug    # build
+./gradlew :shared:testDebugUnitTest    # test
+./gradlew :app:installDebug    # android
+```
+
+Or from the repository root: `./scripts/build-sample kmp-kmm`, `./scripts/test-sample kmp-kmm`,
+`./scripts/run-sample kmp-kmm <target>`.
+- iOS: open `iosApp/` in Xcode (macOS only); it is not started from the command line.
+
+## Environment variables
+
+- none
+
+## Secrets / `local.properties`
+
+none
+
+Never commit `local.properties`, keystores or real secrets.
+
+## Known limitations
+
+- The source branch did not compile: `OwnerUIMapperImpl.kt` imported `presentation.mappers.OwnerUIMapper` twice ("Conflicting import"). The duplicate import line was removed; see docs/migration-notes.md.
+- Historical "KMM" naming; iOS is only buildable on macOS with Xcode.
+
+The original README of the source branch follows unchanged.
+
+<!-- catalog:original-readme -->
+
 # KMM — Kotlin Multiplatform Mobile (Android + iOS)
 
 The first multiplatform step: the MVI/Compose app from the Android branches is moved into a shared Kotlin module and reused on **Android and iOS**. Business logic, data layer, ViewModels and the Compose UI live in `shared/commonMain`; the platforms only provide an entry point and platform-specific drivers.

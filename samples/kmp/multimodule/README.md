@@ -1,3 +1,60 @@
+# KMP multi-module
+
+> **Independent Gradle build** from the [Android Architecture Templates](../../../README.md)
+> catalog. Open *this folder* in Android Studio / IntelliJ IDEA or run `./gradlew` here.
+> It has its own Gradle wrapper and version catalog and does not depend on other samples.
+
+| | |
+|---|---|
+| Catalog ID | `kmp-multimodule` |
+| Source branch | `kmp_with_multimodules_implementation` (commit `71291d4e`) |
+| Status | Reference - a complete, self-contained implementation of an approach. |
+| Architecture | MVI, multi-module |
+| UI | Compose Multiplatform + Compose HTML (web) |
+| Platforms | Android, iOS, Desktop, Web, Server |
+| Key technologies | DI: Koin; network: Ktor Client; storage: SQLDelight + DataStore; navigation: Navigation Compose |
+| Gradle modules | `:core`, `:shared`, `:mobile`, `:desktop`, `:web`, `:server` |
+| Tool versions | Gradle 8.7, AGP 8.5.2, Kotlin 2.0.20 |
+| JDK | 17 |
+| Android SDK | compileSdk 34, targetSdk 34 (set `ANDROID_HOME` or `sdk.dir` in `local.properties`) |
+| applicationId | `com.tarasovvp.architecturetemplates.kmp.multimodule` (changed from `com.vnteam.architecturetemplates` so samples can be installed side by side) |
+| Article | [KMP: Modular Architecture](https://medium.com/@vptarasov/kmp-modular-architecture-faabbdf58197) |
+
+## Build, test, run
+
+From this directory:
+
+```sh
+./gradlew :mobile:assembleDebug    # build
+./gradlew :shared:testDebugUnitTest    # test
+./gradlew :mobile:installDebug    # android
+./gradlew :desktop:run    # desktop
+./gradlew :web:jsBrowserDevelopmentRun    # web
+./gradlew :server:run    # server
+```
+
+Or from the repository root: `./scripts/build-sample kmp-multimodule`, `./scripts/test-sample kmp-multimodule`,
+`./scripts/run-sample kmp-multimodule <target>`.
+- iOS: open `iosApp/` in Xcode (macOS only); it is not started from the command line.
+
+## Environment variables
+
+- `PORT`, `JDBC_URL`, `DRIVER_CLASS_NAME`, `DB_USER_NAME`, `DB_USER_PASSWORD` (the server has built-in defaults; set them to point at your PostgreSQL)
+
+## Secrets / `local.properties`
+
+none
+
+Never commit `local.properties`, keystores or real secrets.
+
+## Known limitations
+
+- Running `:server:run` needs PostgreSQL. iOS needs macOS with Xcode.
+
+The original README of the source branch follows unchanged.
+
+<!-- catalog:original-readme -->
+
 # KMP with a Multi-Module Structure
 
 Restructures the [KMP-with-server project](https://github.com/TarasovVP/Android-Architecture-Templates/tree/kmp_with_server_implementation) into **one Gradle module per platform application** plus shared libraries. The goal is clear module boundaries: each platform app depends on `shared`, `shared` depends on `core`, and the server depends only on `core`.

@@ -1,3 +1,62 @@
+# KMP with custom Gradle plugins
+
+> **Independent Gradle build** from the [Android Architecture Templates](../../../README.md)
+> catalog. Open *this folder* in Android Studio / IntelliJ IDEA or run `./gradlew` here.
+> It has its own Gradle wrapper and version catalog and does not depend on other samples.
+
+| | |
+|---|---|
+| Catalog ID | `kmp-custom-plugins` |
+| Source branch | `kmp_with_custom_plugins` (commit `e6baff20`) |
+| Status | Reference - a complete, self-contained implementation of an approach. |
+| Architecture | MVI, multi-module |
+| UI | Compose Multiplatform + Compose HTML (web) |
+| Platforms | Android, iOS, Desktop, Web, Server |
+| Key technologies | DI: Koin; network: Ktor Client; storage: SQLDelight + DataStore; navigation: Navigation Compose |
+| Gradle modules | `:core`, `:shared`, `:mobile`, `:desktop`, `:web`, `:server`, `:kmp-secrets-plugin`, `:lint-checks`, `:custom-ktlint-rules` |
+| Tool versions | Gradle 8.7, AGP 8.5.2, Kotlin 2.1.10 |
+| JDK | 17 |
+| Android SDK | compileSdk 34, targetSdk 34 (set `ANDROID_HOME` or `sdk.dir` in `local.properties`) |
+| applicationId | `com.tarasovvp.architecturetemplates.kmp.customplugins` (changed from `com.vnteam.architecturetemplates` so samples can be installed side by side) |
+| Article | [Automating Work with Secrets in Kotlin Multiplatform](https://medium.com/@vptarasov/automating-work-with-secrets-in-kotlin-multiplatform-a2b4c587180b) |
+
+## Build, test, run
+
+From this directory:
+
+```sh
+./gradlew :mobile:assembleDebug    # build
+./gradlew :shared:jvmTest    # test
+./gradlew :mobile:installDebug    # android
+./gradlew :desktop:run    # desktop
+./gradlew :web:jsBrowserDevelopmentRun    # web
+./gradlew :server:run    # server
+```
+
+Or from the repository root: `./scripts/build-sample kmp-custom-plugins`, `./scripts/test-sample kmp-custom-plugins`,
+`./scripts/run-sample kmp-custom-plugins <target>`.
+- iOS: open `iosApp/` in Xcode (macOS only); it is not started from the command line.
+
+## Environment variables
+
+- `PORT`, `JDBC_URL`, `DRIVER_CLASS_NAME`, `DB_USER_NAME`, `DB_USER_PASSWORD` (the server has built-in defaults; set them to point at your PostgreSQL)
+
+## Secrets / `local.properties`
+
+`local.properties` (sample root or module) with `CLOUD_URL=<server base url>`, read by the `kmp-secrets-plugin`. No real value is committed.
+
+Never commit `local.properties`, keystores or real secrets.
+
+## Known limitations
+
+- Source fix versus the branch: the `SplashScreen` import in the mobile, desktop and web `App.kt` pointed to a non-existent package; see docs/migration-notes.md.
+- `generateSecrets*` tasks fail without a `local.properties` file (create one with `CLOUD_URL=...`).
+- Running `:server:run` needs PostgreSQL.
+
+The original README of the source branch follows unchanged.
+
+<!-- catalog:original-readme -->
+
 # KMP with Custom Plugins and Rules
 
 Builds on the [tests branch](https://github.com/TarasovVP/Android-Architecture-Templates/tree/kmp_with_tests) by turning repeated build and code-quality chores into **custom, reusable tooling** that lives in the repository: a Gradle plugin for secrets, custom ktlint rules, a custom Android Lint check and a Git pre-commit hook. Ktlint and Detekt are wired into every module.

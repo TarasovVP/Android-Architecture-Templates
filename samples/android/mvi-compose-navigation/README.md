@@ -1,3 +1,56 @@
+# Android MVI + Compose Navigation
+
+> **Independent Gradle build** from the [Android Architecture Templates](../../../README.md)
+> catalog. Open *this folder* in Android Studio / IntelliJ IDEA or run `./gradlew` here.
+> It has its own Gradle wrapper and version catalog and does not depend on other samples.
+
+| | |
+|---|---|
+| Catalog ID | `android-mvi-compose-navigation` |
+| Source branch | `mvi_compose_navigation_implementation` (commit `0dff2a85`) |
+| Status | Reference - a complete, self-contained implementation of an approach. |
+| Architecture | MVI |
+| UI | Jetpack Compose |
+| Platforms | Android |
+| Key technologies | DI: Koin; network: Ktor Client; storage: SQLDelight; navigation: Voyager |
+| Gradle modules | `:app` |
+| Tool versions | Gradle 8.4, AGP 8.3.0, Kotlin 1.9.23 |
+| JDK | 17 |
+| Android SDK | compileSdk 34, targetSdk 34 (set `ANDROID_HOME` or `sdk.dir` in `local.properties`) |
+| applicationId | `com.tarasovvp.architecturetemplates.mvi.compose.navigation` (changed from `com.vnteam.architecturetemplates` so samples can be installed side by side) |
+| Article | none |
+
+## Build, test, run
+
+From this directory:
+
+```sh
+./gradlew assembleDebug    # build
+./gradlew testDebugUnitTest    # test
+./gradlew :app:installDebug    # android
+```
+
+Or from the repository root: `./scripts/build-sample android-mvi-compose-navigation`, `./scripts/test-sample android-mvi-compose-navigation`,
+`./scripts/run-sample android-mvi-compose-navigation <target>`.
+
+## Environment variables
+
+- none
+
+## Secrets / `local.properties`
+
+none
+
+Never commit `local.properties`, keystores or real secrets.
+
+## Known limitations
+
+- None recorded.
+
+The original README of the source branch follows unchanged.
+
+<!-- catalog:original-readme -->
+
 # MVI with Compose and Voyager Navigation
 
 The Compose-based Android implementation reworked to **Model-View-Intent**: each screen has an immutable view state, a sealed set of intents and a ViewModel that reduces intents into new states exposed as a `StateFlow`. Navigation uses the Voyager library instead of `NavHost`.

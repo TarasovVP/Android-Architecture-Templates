@@ -1,3 +1,63 @@
+# KMP with analysis tools
+
+> **Independent Gradle build** from the [Android Architecture Templates](../../../README.md)
+> catalog. Open *this folder* in Android Studio / IntelliJ IDEA or run `./gradlew` here.
+> It has its own Gradle wrapper and version catalog and does not depend on other samples.
+
+| | |
+|---|---|
+| Catalog ID | `kmp-analysis-tools` |
+| Source branch | `kmp_with_analyze_tools` (commit `dcde9f37`) |
+| Status | Reference - a complete, self-contained implementation of an approach. |
+| Architecture | MVI, multi-module |
+| UI | Compose Multiplatform + Compose HTML (web) |
+| Platforms | Android, iOS, Desktop, Web, Server |
+| Key technologies | DI: Koin; network: Ktor Client; storage: SQLDelight + DataStore; navigation: Navigation Compose |
+| Gradle modules | `:core`, `:shared`, `:composeUI`, `:mobile`, `:desktop`, `:web`, `:server`, `:kmp-secrets-plugin`, `:lint-checks`, `:custom-ktlint-rules` |
+| Tool versions | Gradle 8.11.1, AGP 8.9.2, Kotlin 2.1.20 |
+| JDK | 17 |
+| Android SDK | compileSdk 34, targetSdk 34 (set `ANDROID_HOME` or `sdk.dir` in `local.properties`) |
+| applicationId | `com.tarasovvp.architecturetemplates.kmp.analysistools` (changed from `com.vnteam.architecturetemplates` so samples can be installed side by side) |
+| Article | [Code Quality Control in KMP with SonarQube](https://medium.com/@vptarasov/code-quality-control-in-kmp-with-sonarqube-1237ec4f3a4b) |
+
+## Build, test, run
+
+From this directory:
+
+```sh
+./gradlew :mobile:assembleDebug    # build
+./gradlew :shared:jvmTest    # test
+./gradlew :mobile:installDebug    # android
+./gradlew :desktop:run    # desktop
+./gradlew :web:jsBrowserDevelopmentRun    # web
+./gradlew :server:run    # server
+```
+
+Or from the repository root: `./scripts/build-sample kmp-analysis-tools`, `./scripts/test-sample kmp-analysis-tools`,
+`./scripts/run-sample kmp-analysis-tools <target>`.
+- iOS: open `iosApp/` in Xcode (macOS only); it is not started from the command line.
+
+## Environment variables
+
+- `PORT`, `JDBC_URL`, `DRIVER_CLASS_NAME`, `DB_USER_NAME`, `DB_USER_PASSWORD` (the server has built-in defaults; set them to point at your PostgreSQL)
+- `SONAR_TOKEN` and the Sonar project settings, only for `./gradlew sonar` (see the CI workflow in `.github/workflows`)
+
+## Secrets / `local.properties`
+
+`local.properties` (sample root or module) with `CLOUD_URL=<server base url>`, read by the `kmp-secrets-plugin`. No real value is committed.
+
+Never commit `local.properties`, keystores or real secrets.
+
+## Known limitations
+
+- `generateSecrets*` tasks fail without a `local.properties` file (create one with `CLOUD_URL=...`).
+- `./gradlew sonar` needs a Sonar token and project settings. The workflow stored in this sample's `.github/` is part of the example and is not run by GitHub.
+- The remote build cache points to `http://localhost:5071/cache/` and logs a connection error unless a cache node is running (not changed in this sample).
+
+The original README of the source branch follows unchanged.
+
+<!-- catalog:original-readme -->
+
 # KMP with Code Analysis Tools
 
 Adds a **code-quality pipeline** to the [custom plugins branch](https://github.com/TarasovVP/Android-Architecture-Templates/tree/kmp_with_custom_plugins): ktlint and Detekt reports, Kover coverage, a SonarQube/SonarCloud analysis task that aggregates them, and a GitHub Actions workflow that runs the chain on every push and pull request. Build-performance tooling (build cache, build scans, a gradle-profiler scenario file) is also introduced here.

@@ -1,3 +1,56 @@
+# Android MVC (AsyncTask)
+
+> **Independent Gradle build** from the [Android Architecture Templates](../../../README.md)
+> catalog. Open *this folder* in Android Studio / IntelliJ IDEA or run `./gradlew` here.
+> It has its own Gradle wrapper and version catalog and does not depend on other samples.
+
+| | |
+|---|---|
+| Catalog ID | `android-mvc-async-task` |
+| Source branch | `mvc_async_task_implementation` (commit `6c02c716`) |
+| Status | Historical - kept to show how Android evolved; not recommended for new projects. |
+| Architecture | MVC |
+| UI | XML Views |
+| Platforms | Android |
+| Key technologies | DI: None (ButterKnife view binding); network: OkHttp + Moshi (AsyncTask); storage: ORMLite; navigation: Activities (Intents) |
+| Gradle modules | `:app` |
+| Tool versions | Gradle 7.5, AGP 7.4.1, Kotlin 1.8.0 |
+| JDK | 17 |
+| Android SDK | compileSdk 33, targetSdk 33 (set `ANDROID_HOME` or `sdk.dir` in `local.properties`) |
+| applicationId | `com.tarasovvp.architecturetemplates.mvc.asynctask` (changed from `com.vnteam.architecturetemplates` so samples can be installed side by side) |
+| Article | none |
+
+## Build, test, run
+
+From this directory:
+
+```sh
+./gradlew assembleDebug    # build
+./gradlew testDebugUnitTest    # test
+./gradlew :app:installDebug    # android
+```
+
+Or from the repository root: `./scripts/build-sample android-mvc-async-task`, `./scripts/test-sample android-mvc-async-task`,
+`./scripts/run-sample android-mvc-async-task <target>`.
+
+## Environment variables
+
+- none
+
+## Secrets / `local.properties`
+
+none
+
+Never commit `local.properties`, keystores or real secrets.
+
+## Known limitations
+
+- Historical sample: uses the deprecated AsyncTask on purpose.
+
+The original README of the source branch follows unchanged.
+
+<!-- catalog:original-readme -->
+
 # MVC with AsyncTask
 
 The second step of the Android line: the same MVC structure as the [native MVC branch](https://github.com/TarasovVP/Android-Architecture-Templates/tree/mvc_native_implementation), but with a few popular libraries of the time (OkHttp, Moshi, ORMLite, ButterKnife) and `AsyncTask` instead of `Handler` + `Thread` for background work.

@@ -1,3 +1,56 @@
+# Android MVVM
+
+> **Independent Gradle build** from the [Android Architecture Templates](../../../README.md)
+> catalog. Open *this folder* in Android Studio / IntelliJ IDEA or run `./gradlew` here.
+> It has its own Gradle wrapper and version catalog and does not depend on other samples.
+
+| | |
+|---|---|
+| Catalog ID | `android-mvvm` |
+| Source branch | `mvvm_implementation` (commit `be3505bc`) |
+| Status | Reference - a complete, self-contained implementation of an approach. |
+| Architecture | MVVM |
+| UI | XML Views + Fragments |
+| Platforms | Android |
+| Key technologies | DI: Hilt; network: Retrofit + OkHttp; storage: Room; navigation: Navigation component |
+| Gradle modules | `:app` |
+| Tool versions | Gradle 8.4, AGP 8.3.0, Kotlin 1.9.23 |
+| JDK | 17 |
+| Android SDK | compileSdk 34, targetSdk 34 (set `ANDROID_HOME` or `sdk.dir` in `local.properties`) |
+| applicationId | `com.tarasovvp.architecturetemplates.mvvm` (changed from `com.vnteam.architecturetemplates` so samples can be installed side by side) |
+| Article | none |
+
+## Build, test, run
+
+From this directory:
+
+```sh
+./gradlew assembleDebug    # build
+./gradlew testDebugUnitTest    # test
+./gradlew :app:installDebug    # android
+```
+
+Or from the repository root: `./scripts/build-sample android-mvvm`, `./scripts/test-sample android-mvvm`,
+`./scripts/run-sample android-mvvm <target>`.
+
+## Environment variables
+
+- none
+
+## Secrets / `local.properties`
+
+none
+
+Never commit `local.properties`, keystores or real secrets.
+
+## Known limitations
+
+- None recorded.
+
+The original README of the source branch follows unchanged.
+
+<!-- catalog:original-readme -->
+
 # MVVM with Hilt, Room and Retrofit
 
 The first "modern Android" implementation in the repository: MVVM with Jetpack `ViewModel` and `LiveData`, a repository layer, Hilt for dependency injection, Retrofit for networking, Room for caching, Kotlin coroutines for concurrency and the Navigation component with Fragments for screens.

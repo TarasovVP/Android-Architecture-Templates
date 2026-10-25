@@ -1,3 +1,61 @@
+# KMP with Git submodules
+
+> **Independent Gradle build** from the [Android Architecture Templates](../../../README.md)
+> catalog. Open *this folder* in Android Studio / IntelliJ IDEA or run `./gradlew` here.
+> It has its own Gradle wrapper and version catalog and does not depend on other samples.
+
+| | |
+|---|---|
+| Catalog ID | `kmp-git-submodules` |
+| Source branch | `kmp_with_git_submodules_implementation` (commit `e8ee3e40`) |
+| Status | Reference - a complete, self-contained implementation of an approach. |
+| Architecture | MVI, multi-repo |
+| UI | Compose Multiplatform + Compose HTML (web) |
+| Platforms | Android, iOS, Desktop, Web, Server |
+| Key technologies | DI: Koin; network: Ktor Client; storage: SQLDelight + DataStore; navigation: Navigation Compose |
+| Gradle modules | `:core`, `:shared`, `:mobile`, `:desktop`, `:web:web`, `:server` |
+| Tool versions | Gradle 8.7, AGP 8.5.2, Kotlin 2.0.20 |
+| JDK | 17 |
+| Android SDK | compileSdk 34, targetSdk 34 (set `ANDROID_HOME` or `sdk.dir` in `local.properties`) |
+| applicationId | `com.tarasovvp.architecturetemplates.kmp.gitsubmodules` (changed from `com.vnteam.architecturetemplates` so samples can be installed side by side) |
+| Article | [Migration to Git Submodules Architecture in a KMP Project](https://medium.com/@vptarasov/migration-to-git-submodules-architecture-in-a-kmp-project-4a73ec4a2c9e) |
+
+## Build, test, run
+
+From this directory:
+
+```sh
+./gradlew :mobile:assembleDebug    # build
+./gradlew :shared:testDebugUnitTest    # test
+./gradlew :mobile:installDebug    # android
+./gradlew :desktop:run    # desktop
+./gradlew :web:web:jsBrowserDevelopmentRun    # web
+./gradlew :server:run    # server
+```
+
+Or from the repository root: `./scripts/build-sample kmp-git-submodules`, `./scripts/test-sample kmp-git-submodules`,
+`./scripts/run-sample kmp-git-submodules <target>`.
+- iOS: open `iosApp/` in Xcode (macOS only); it is not started from the command line.
+
+## Environment variables
+
+- `PORT`, `JDBC_URL`, `DRIVER_CLASS_NAME`, `DB_USER_NAME`, `DB_USER_PASSWORD` (the server has built-in defaults; set them to point at your PostgreSQL)
+
+## Secrets / `local.properties`
+
+none
+
+Never commit `local.properties`, keystores or real secrets.
+
+## Known limitations
+
+- `shared` and `web` are vendored copies of the original submodules (see ORIGINAL_SUBMODULES.md); the real submodule setup exists only on the source branch.
+- Running `:server:run` needs PostgreSQL. iOS needs macOS with Xcode.
+
+The original README of the source branch follows unchanged.
+
+<!-- catalog:original-readme -->
+
 # KMP with Git Submodules
 
 A variant of the [multi-module KMP project](https://github.com/TarasovVP/Android-Architecture-Templates/tree/kmp_with_multimodules_implementation) in which two parts of the code base — the **`shared`** module and the **`web`** application — live in their own Git repositories and are attached to this repository as **Git submodules**.

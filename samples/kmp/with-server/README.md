@@ -1,3 +1,60 @@
+# KMP with Ktor server
+
+> **Independent Gradle build** from the [Android Architecture Templates](../../../README.md)
+> catalog. Open *this folder* in Android Studio / IntelliJ IDEA or run `./gradlew` here.
+> It has its own Gradle wrapper and version catalog and does not depend on other samples.
+
+| | |
+|---|---|
+| Catalog ID | `kmp-with-server` |
+| Source branch | `kmp_with_server_implementation` (commit `5ecf0b82`) |
+| Status | Reference - a complete, self-contained implementation of an approach. |
+| Architecture | MVI + Ktor server |
+| UI | Compose Multiplatform + Compose HTML |
+| Platforms | Android, iOS, Desktop, Web, Server |
+| Key technologies | DI: Koin; network: Ktor Client + Ktor Server; storage: SQLDelight + DataStore + PostgreSQL (server); navigation: Navigation Compose |
+| Gradle modules | `:shared`, `:core`, `:composeUi`, `:composeApp`, `:composeWebApp`, `:server`, `:webApp` |
+| Tool versions | Gradle 8.7, AGP 8.5.2, Kotlin 2.0.20 |
+| JDK | 17 |
+| Android SDK | compileSdk 34, targetSdk 34 (set `ANDROID_HOME` or `sdk.dir` in `local.properties`) |
+| applicationId | `com.tarasovvp.architecturetemplates.kmp.withserver` (changed from `com.vnteam.architecturetemplates` so samples can be installed side by side) |
+| Article | [KMP: Server Implementation](https://medium.com/@vptarasov/kmp-server-implementation-49a0a4389b34) |
+
+## Build, test, run
+
+From this directory:
+
+```sh
+./gradlew :composeApp:assembleDebug    # build
+./gradlew :shared:testDebugUnitTest    # test
+./gradlew :composeApp:installDebug    # android
+./gradlew :composeApp:run    # desktop
+./gradlew :composeWebApp:jsBrowserDevelopmentRun    # web
+./gradlew :server:run    # server
+```
+
+Or from the repository root: `./scripts/build-sample kmp-with-server`, `./scripts/test-sample kmp-with-server`,
+`./scripts/run-sample kmp-with-server <target>`.
+- iOS: open `iosApp/` in Xcode (macOS only); it is not started from the command line.
+
+## Environment variables
+
+- `PORT`, `JDBC_URL`, `DRIVER_CLASS_NAME`, `DB_USER_NAME`, `DB_USER_PASSWORD` (the server has built-in defaults; set them to point at your PostgreSQL)
+
+## Secrets / `local.properties`
+
+none
+
+Never commit `local.properties`, keystores or real secrets.
+
+## Known limitations
+
+- Running `:server:run` needs PostgreSQL (see environment variables). iOS needs macOS with Xcode.
+
+The original README of the source branch follows unchanged.
+
+<!-- catalog:original-readme -->
+
 # KMP with a Ktor Server
 
 Extends the [KMP branch](https://github.com/TarasovVP/Android-Architecture-Templates/tree/kmp_implementation) with the project's **own backend**: a Ktor server with a PostgreSQL database, written in Kotlin and sharing its models with the clients. The clients stop calling the GitHub API and talk to this server instead, with a local SQLDelight database as a cache.

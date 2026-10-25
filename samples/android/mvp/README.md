@@ -1,3 +1,56 @@
+# Android MVP
+
+> **Independent Gradle build** from the [Android Architecture Templates](../../../README.md)
+> catalog. Open *this folder* in Android Studio / IntelliJ IDEA or run `./gradlew` here.
+> It has its own Gradle wrapper and version catalog and does not depend on other samples.
+
+| | |
+|---|---|
+| Catalog ID | `android-mvp` |
+| Source branch | `mvp_implementation` (commit `87af8031`) |
+| Status | Reference - a complete, self-contained implementation of an approach. |
+| Architecture | MVP |
+| UI | XML Views + Fragments |
+| Platforms | Android |
+| Key technologies | DI: Dagger 2; network: Volley + RxJava; storage: Realm; navigation: FragmentManager |
+| Gradle modules | `:app` |
+| Tool versions | Gradle 7.5, AGP 7.4.1, Kotlin 1.8.0 |
+| JDK | 17 |
+| Android SDK | compileSdk 33, targetSdk 33 (set `ANDROID_HOME` or `sdk.dir` in `local.properties`) |
+| applicationId | `com.tarasovvp.architecturetemplates.mvp` (changed from `com.vnteam.architecturetemplates` so samples can be installed side by side) |
+| Article | none |
+
+## Build, test, run
+
+From this directory:
+
+```sh
+./gradlew assembleDebug    # build
+./gradlew testDebugUnitTest    # test
+./gradlew :app:installDebug    # android
+```
+
+Or from the repository root: `./scripts/build-sample android-mvp`, `./scripts/test-sample android-mvp`,
+`./scripts/run-sample android-mvp <target>`.
+
+## Environment variables
+
+- none
+
+## Secrets / `local.properties`
+
+none
+
+Never commit `local.properties`, keystores or real secrets.
+
+## Known limitations
+
+- Uses Volley and Realm, kept on purpose as a historical stack.
+
+The original README of the source branch follows unchanged.
+
+<!-- catalog:original-readme -->
+
 # MVP with RxJava, Realm and Dagger
 
 Model-View-Presenter implementation with single-activity/fragment navigation. Presenters own the screen logic, views are reduced to interfaces implemented by fragments, and asynchronous work is expressed with RxJava `Observable`s.
