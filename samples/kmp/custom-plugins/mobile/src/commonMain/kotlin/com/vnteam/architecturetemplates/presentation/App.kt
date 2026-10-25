@@ -31,7 +31,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.navigation.compose.rememberNavController
 import com.vnteam.architecturetemplates.data.APP_LANG_EN
 import com.vnteam.architecturetemplates.data.APP_LANG_UK
-import com.vnteam.architecturetemplates.presentation.components.SplashScreen
+import com.vnteam.architecturetemplates.presentation.screens.splash.SplashScreen
 import com.vnteam.architecturetemplates.presentation.resources.LocalLargerPadding
 import com.vnteam.architecturetemplates.presentation.resources.LocalSmallPadding
 import com.vnteam.architecturetemplates.presentation.resources.LocalStringResources
