@@ -1,4 +1,2 @@
 # The catalog contains runnable projects; sources under samples are first-class code.
 samples/** linguist-documentation=false
-samples/** linguist-vendored=false
-samples/** linguist-detectable=true
