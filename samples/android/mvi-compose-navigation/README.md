@@ -7,7 +7,6 @@
 | | |
 |---|---|
 | Catalog ID | `android-mvi-compose-navigation` |
-| Source branch | `mvi_compose_navigation_implementation` (commit `0dff2a85`) |
 | Status | Reference - a complete, self-contained implementation of an approach. |
 | Architecture | MVI |
 | UI | Jetpack Compose |
@@ -46,10 +45,6 @@ Never commit `local.properties`, keystores or real secrets.
 ## Known limitations
 
 - None recorded.
-
-The original README of the source branch follows unchanged.
-
-<!-- catalog:original-readme -->
 
 # MVI with Compose and Voyager Navigation
 

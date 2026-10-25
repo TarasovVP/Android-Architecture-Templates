@@ -7,7 +7,6 @@
 | | |
 |---|---|
 | Catalog ID | `android-mvc-native` |
-| Source branch | `mvc_native_implementation` (commit `86aef182`) |
 | Status | Historical - kept to show how Android evolved; not recommended for new projects. |
 | Architecture | MVC |
 | UI | XML Views |
@@ -46,10 +45,6 @@ Never commit `local.properties`, keystores or real secrets.
 ## Known limitations
 
 - Historical sample: platform APIs only, no tests of its own.
-
-The original README of the source branch follows unchanged.
-
-<!-- catalog:original-readme -->
 
 # MVC with Native Android APIs
 

@@ -7,7 +7,6 @@
 | | |
 |---|---|
 | Catalog ID | `android-mvvm` |
-| Source branch | `mvvm_implementation` (commit `be3505bc`) |
 | Status | Reference - a complete, self-contained implementation of an approach. |
 | Architecture | MVVM |
 | UI | XML Views + Fragments |
@@ -46,10 +45,6 @@ Never commit `local.properties`, keystores or real secrets.
 ## Known limitations
 
 - None recorded.
-
-The original README of the source branch follows unchanged.
-
-<!-- catalog:original-readme -->
 
 # MVVM with Hilt, Room and Retrofit
 

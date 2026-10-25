@@ -7,7 +7,6 @@
 | | |
 |---|---|
 | Catalog ID | `kmp-git-submodules` |
-| Source branch | `kmp_with_git_submodules_implementation` (commit `e8ee3e40`) |
 | Status | Reference - a complete, self-contained implementation of an approach. |
 | Architecture | MVI, multi-repo |
 | UI | Compose Multiplatform + Compose HTML (web) |
@@ -49,12 +48,8 @@ Never commit `local.properties`, keystores or real secrets.
 
 ## Known limitations
 
-- `shared` and `web` are vendored copies of the original submodules (see ORIGINAL_SUBMODULES.md); the real submodule setup exists only on the source branch.
+- `shared` and `web` are vendored copies of the original submodules (see ORIGINAL_SUBMODULES.md); the real submodule setup is not part of this sample.
 - Running `:server:run` needs PostgreSQL. iOS needs macOS with Xcode.
-
-The original README of the source branch follows unchanged.
-
-<!-- catalog:original-readme -->
 
 # KMP with Git Submodules
 

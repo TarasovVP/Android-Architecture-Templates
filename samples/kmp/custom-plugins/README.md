@@ -7,7 +7,6 @@
 | | |
 |---|---|
 | Catalog ID | `kmp-custom-plugins` |
-| Source branch | `kmp_with_custom_plugins` (commit `e6baff20`) |
 | Status | Reference - a complete, self-contained implementation of an approach. |
 | Architecture | MVI, multi-module |
 | UI | Compose Multiplatform + Compose HTML (web) |
@@ -49,13 +48,8 @@ Never commit `local.properties`, keystores or real secrets.
 
 ## Known limitations
 
-- Source fix versus the branch: the `SplashScreen` import in the mobile, desktop and web `App.kt` pointed to a non-existent package; see docs/migration-notes.md.
 - `generateSecrets*` tasks fail without a `local.properties` file (create one with `CLOUD_URL=...`).
 - Running `:server:run` needs PostgreSQL.
-
-The original README of the source branch follows unchanged.
-
-<!-- catalog:original-readme -->
 
 # KMP with Custom Plugins and Rules
 

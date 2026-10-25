@@ -7,7 +7,6 @@
 | | |
 |---|---|
 | Catalog ID | `kmp-multimodule` |
-| Source branch | `kmp_with_multimodules_implementation` (commit `71291d4e`) |
 | Status | Reference - a complete, self-contained implementation of an approach. |
 | Architecture | MVI, multi-module |
 | UI | Compose Multiplatform + Compose HTML (web) |
@@ -50,10 +49,6 @@ Never commit `local.properties`, keystores or real secrets.
 ## Known limitations
 
 - Running `:server:run` needs PostgreSQL. iOS needs macOS with Xcode.
-
-The original README of the source branch follows unchanged.
-
-<!-- catalog:original-readme -->
 
 # KMP with a Multi-Module Structure
 

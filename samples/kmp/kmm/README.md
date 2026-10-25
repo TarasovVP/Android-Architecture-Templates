@@ -7,7 +7,6 @@
 | | |
 |---|---|
 | Catalog ID | `kmp-kmm` |
-| Source branch | `kmm_implementation` (commit `001f6c6f`) |
 | Status | Historical - kept to show how Android evolved; not recommended for new projects. |
 | Architecture | MVI |
 | UI | Compose Multiplatform |
@@ -46,12 +45,7 @@ Never commit `local.properties`, keystores or real secrets.
 
 ## Known limitations
 
-- The source branch did not compile: `OwnerUIMapperImpl.kt` imported `presentation.mappers.OwnerUIMapper` twice ("Conflicting import"). The duplicate import line was removed; see docs/migration-notes.md.
 - Historical "KMM" naming; iOS is only buildable on macOS with Xcode.
-
-The original README of the source branch follows unchanged.
-
-<!-- catalog:original-readme -->
 
 # KMM — Kotlin Multiplatform Mobile (Android + iOS)
 

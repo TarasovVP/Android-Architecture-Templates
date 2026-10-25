@@ -7,7 +7,6 @@
 | | |
 |---|---|
 | Catalog ID | `android-mvc-async-task` |
-| Source branch | `mvc_async_task_implementation` (commit `6c02c716`) |
 | Status | Historical - kept to show how Android evolved; not recommended for new projects. |
 | Architecture | MVC |
 | UI | XML Views |
@@ -46,10 +45,6 @@ Never commit `local.properties`, keystores or real secrets.
 ## Known limitations
 
 - Historical sample: uses the deprecated AsyncTask on purpose.
-
-The original README of the source branch follows unchanged.
-
-<!-- catalog:original-readme -->
 
 # MVC with AsyncTask
 

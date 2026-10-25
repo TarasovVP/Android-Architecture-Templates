@@ -7,7 +7,6 @@
 | | |
 |---|---|
 | Catalog ID | `kmp-ci-cd` |
-| Source branch | `kmp_with_ci_cd` (commit `f37069c1`) |
 | Status | Latest - the most current and complete state. |
 | Architecture | MVI, multi-module |
 | UI | Compose Multiplatform + Compose HTML (web) |
@@ -51,16 +50,11 @@ Never commit `local.properties`, keystores or real secrets.
 
 ## Known limitations
 
-- Two source changes versus the branch: removed the forced `androidx.compose.foundation` 1.6.7 resolution in `composeUI/build.gradle.kts` (it broke `animateItem`), plus the opt-in remote cache; see docs/migration-notes.md.
 - Needs JDK 21. `STORE_PASSWORD`, `KEY_ALIAS` and `KEY_PASSWORD` must be set (any placeholder is enough for debug builds) because release signing is configured while the project is configured.
 - `generateSecrets*` tasks need a `local.properties` file with `CLOUD_URL=...`.
 - `:shared:jvmTest`: 57 of 58 tests pass offline; `DeleteDemoObjectUseCaseTest.testDeleteDemoObject` calls the real server behind `CLOUD_URL` and fails with `ConnectException` when it is unreachable.
 - Jenkins, Fastlane, Sonar and baseline-profile generation need external infrastructure and were not run.
-- Remote build cache is opt-in here (`-PremoteCache`); see docs/migration-notes.md.
-
-The original README of the source branch follows unchanged.
-
-<!-- catalog:original-readme -->
+- Remote build cache is opt-in here (`-PremoteCache`).
 
 # KMP with CI/CD, Benchmarks and Baseline Profiles
 

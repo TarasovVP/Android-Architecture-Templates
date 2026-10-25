@@ -7,7 +7,6 @@
 | | |
 |---|---|
 | Catalog ID | `kmp-basic` |
-| Source branch | `kmp_implementation` (commit `703c240c`) |
 | Status | Reference - a complete, self-contained implementation of an approach. |
 | Architecture | MVI |
 | UI | Compose Multiplatform + Compose HTML |
@@ -48,12 +47,7 @@ Never commit `local.properties`, keystores or real secrets.
 
 ## Known limitations
 
-- The source branch tracked compiled `server/build` outputs but no `server` sources; those outputs are not imported and there is no server module.
 - iOS is only buildable on macOS with Xcode.
-
-The original README of the source branch follows unchanged.
-
-<!-- catalog:original-readme -->
 
 # KMP — Android, iOS, Desktop and Web
 

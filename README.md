@@ -45,7 +45,6 @@ when something is missing they tell you what to install.
 
 ```
 catalog/samples.json      data source for the scripts (one entry per sample)
-docs/                     comparison, evolution, build requirements, migration notes
 scripts/                  list-samples, sample-info, build-sample, test-sample, run-sample
 samples/android/*         8 Android-only samples
 samples/kmp/*             9 Kotlin Multiplatform samples
@@ -146,7 +145,7 @@ You can also work directly in a sample: `cd samples/kmp/multimodule && ./gradlew
 ## Environment requirements
 
 General: an Android SDK (`ANDROID_HOME` or `sdk.dir` in the sample's `local.properties`),
-internet access to download dependencies. Exact versions: [docs/build-requirements.md](docs/build-requirements.md).
+internet access to download dependencies.  Exact versions are in each sample's `sample.json` and README.
 
 | ID | JDK | Extra requirements |
 |----|-----|--------------------|
@@ -180,10 +179,6 @@ Notes:
 ## Comparing samples
 
 - Side by side in your editor, or `git diff --no-index samples/android/mvvm samples/android/mvvm-clean`.
-- [docs/architecture-comparison.md](docs/architecture-comparison.md) compares the architectures
-  using the real code.
-- [docs/project-evolution.md](docs/project-evolution.md) shows the order in which the samples
-  appeared and what each step changed.
 
 ## How the project evolved
 
@@ -191,7 +186,7 @@ Android: `mvc-native` -> `mvc-async-task` -> `mvp` -> `mvvm` -> `mvvm-compose` -
 `mvvm-compose-navigation` -> `mvi-compose-navigation`, with `mvvm-clean` branching off `mvvm`.
 KMP: `mvi-compose-navigation` -> `kmm` -> `basic` -> `with-server` -> `multimodule` -> `tests` ->
 `custom-plugins` -> `analysis-tools` -> `ci-cd`, with `git-submodules` as a side branch of
-`multimodule`. Details: [docs/project-evolution.md](docs/project-evolution.md).
+`multimodule`.
 
 ## Articles
 
@@ -223,9 +218,6 @@ This is a personal **architecture playground and showcase**, not a library or fr
 - Samples are snapshots; dependency versions differ and older ones are not kept up to date.
 - Deprecated technologies (AsyncTask, Volley, Realm, KMM naming) are kept deliberately.
 - Default URLs, database settings and secrets in the code are placeholders or demo values.
-- Per-sample build results and known problems are recorded in
-  [docs/migration-notes.md](docs/migration-notes.md), which also describes how the per-branch
-  layout was converted into this catalog.
 
 Contributing rules: [CONTRIBUTING.md](CONTRIBUTING.md). License: [Apache-2.0](LICENSE).
 

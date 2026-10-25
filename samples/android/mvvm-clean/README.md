@@ -7,7 +7,6 @@
 | | |
 |---|---|
 | Catalog ID | `android-mvvm-clean` |
-| Source branch | `mvvm_clean_architecture_implementation` (commit `e9c9326f`) |
 | Status | Reference - a complete, self-contained implementation of an approach. |
 | Architecture | MVVM + Clean Architecture |
 | UI | XML Views + Fragments |
@@ -46,10 +45,6 @@ Never commit `local.properties`, keystores or real secrets.
 ## Known limitations
 
 - None recorded.
-
-The original README of the source branch follows unchanged.
-
-<!-- catalog:original-readme -->
 
 # MVVM with Clean Architecture
 

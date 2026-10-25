@@ -7,7 +7,6 @@
 | | |
 |---|---|
 | Catalog ID | `kmp-analysis-tools` |
-| Source branch | `kmp_with_analyze_tools` (commit `dcde9f37`) |
 | Status | Reference - a complete, self-contained implementation of an approach. |
 | Architecture | MVI, multi-module |
 | UI | Compose Multiplatform + Compose HTML (web) |
@@ -53,10 +52,6 @@ Never commit `local.properties`, keystores or real secrets.
 - `generateSecrets*` tasks fail without a `local.properties` file (create one with `CLOUD_URL=...`).
 - `./gradlew sonar` needs a Sonar token and project settings. The workflow stored in this sample's `.github/` is part of the example and is not run by GitHub.
 - The remote build cache points to `http://localhost:5071/cache/` and logs a connection error unless a cache node is running (not changed in this sample).
-
-The original README of the source branch follows unchanged.
-
-<!-- catalog:original-readme -->
 
 # KMP with Code Analysis Tools
 

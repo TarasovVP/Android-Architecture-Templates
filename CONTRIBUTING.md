@@ -24,7 +24,6 @@ from a normal multi-module project.
 3. If tool versions, commands, or run targets change, update the sample's
    `sample.json` **and** the matching entry in `catalog/samples.json` (they use
    the same schema; keep one key per line, the scripts rely on it).
-4. Note any deviation from the original branch in `docs/migration-notes.md`.
 
 ## Adding a sample
 

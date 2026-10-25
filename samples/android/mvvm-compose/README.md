@@ -7,7 +7,6 @@
 | | |
 |---|---|
 | Catalog ID | `android-mvvm-compose` |
-| Source branch | `mvvm_compose_implementation` (commit `609620a1`) |
 | Status | Reference - a complete, self-contained implementation of an approach. |
 | Architecture | MVVM |
 | UI | Jetpack Compose in Fragments |
@@ -46,10 +45,6 @@ Never commit `local.properties`, keystores or real secrets.
 ## Known limitations
 
 - None recorded.
-
-The original README of the source branch follows unchanged.
-
-<!-- catalog:original-readme -->
 
 # MVVM with Jetpack Compose (Fragment-hosted)
 

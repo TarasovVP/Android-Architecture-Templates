@@ -7,7 +7,6 @@
 | | |
 |---|---|
 | Catalog ID | `android-mvvm-compose-navigation` |
-| Source branch | `mvvm_compose_navigation_implementation` (commit `bbe64720`) |
 | Status | Reference - a complete, self-contained implementation of an approach. |
 | Architecture | MVVM |
 | UI | Jetpack Compose |
@@ -46,10 +45,6 @@ Never commit `local.properties`, keystores or real secrets.
 ## Known limitations
 
 - None recorded.
-
-The original README of the source branch follows unchanged.
-
-<!-- catalog:original-readme -->
 
 # MVVM with Compose Navigation, Ktor, SQLDelight and Koin
 

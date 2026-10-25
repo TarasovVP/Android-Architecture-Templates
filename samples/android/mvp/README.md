@@ -7,7 +7,6 @@
 | | |
 |---|---|
 | Catalog ID | `android-mvp` |
-| Source branch | `mvp_implementation` (commit `87af8031`) |
 | Status | Reference - a complete, self-contained implementation of an approach. |
 | Architecture | MVP |
 | UI | XML Views + Fragments |
@@ -46,10 +45,6 @@ Never commit `local.properties`, keystores or real secrets.
 ## Known limitations
 
 - Uses Volley and Realm, kept on purpose as a historical stack.
-
-The original README of the source branch follows unchanged.
-
-<!-- catalog:original-readme -->
 
 # MVP with RxJava, Realm and Dagger
 

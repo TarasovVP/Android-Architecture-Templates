@@ -7,7 +7,6 @@
 | | |
 |---|---|
 | Catalog ID | `kmp-with-server` |
-| Source branch | `kmp_with_server_implementation` (commit `5ecf0b82`) |
 | Status | Reference - a complete, self-contained implementation of an approach. |
 | Architecture | MVI + Ktor server |
 | UI | Compose Multiplatform + Compose HTML |
@@ -50,10 +49,6 @@ Never commit `local.properties`, keystores or real secrets.
 ## Known limitations
 
 - Running `:server:run` needs PostgreSQL (see environment variables). iOS needs macOS with Xcode.
-
-The original README of the source branch follows unchanged.
-
-<!-- catalog:original-readme -->
 
 # KMP with a Ktor Server
 
